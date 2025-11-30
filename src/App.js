@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Layout, theme } from 'antd';
 import AppMenu from './Menu';
 import Banner from './Banner';
@@ -70,11 +70,41 @@ const renderContent = (key) => {
 
 const App = () => {
   const [selectedKey, setSelectedKey] = useState('home');
+  const [siderWidth, setSiderWidth] = useState(240);
+  const siderRef = useRef(null);
+  const isResizingRef = useRef(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+  useEffect(() => {
+    const onMouseMove = (e) => {
+      if (!isResizingRef.current) return;
+      if (!siderRef.current) return;
+      const rect = siderRef.current.getBoundingClientRect();
+      const newWidth = Math.round(e.clientX - rect.left);
+      const clamped = Math.max(140, Math.min(600, newWidth));
+      setSiderWidth(clamped);
+    };
+    const onMouseUp = () => {
+      isResizingRef.current = false;
+      document.body.style.userSelect = '';
+    };
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mouseup', onMouseUp);
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+    };
+  }, []);
+
+  const onMouseDownResizer = (e) => {
+    isResizingRef.current = true;
+    // Prevent text selection while dragging
+    document.body.style.userSelect = 'none';
+  };
+
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header >
         <div className="demo-logo" >
           {/* indian flag or logo can be placed here */}
@@ -82,17 +112,50 @@ const App = () => {
          <Title level={3} style={{ color: 'white', marginLeft: '10px', display: 'inline-block' }}>GP Admin Panel</Title>
         </div>
       </Header>
-      <Layout>
-        <Sider style={{ background: colorBgContainer }}>
+      <Layout className='' style={{ display: 'flex', flex: 1 }}>
+        <Sider
+          ref={siderRef}
+          width={siderWidth}
+          style={{
+            background: '#062233',
+            backgroundColor: '#062233',
+            height: 'auto',
+            alignSelf: 'stretch',
+            overflow: 'auto',
+            position: 'relative',
+          }}
+        >
           <AppMenu onMenuClick={setSelectedKey} />
+          {/* draggable resizer */}
+          <div
+            onMouseDown={onMouseDownResizer}
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: -3,
+              bottom: 0,
+              width: 6,
+              cursor: 'col-resize',
+              zIndex: 20,
+              background: colorBgContainer,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            aria-hidden
+          >
+            <div style={{ width: 2, height: '40%', background: 'rgba(0,0,0,0.15)', borderRadius: 2 }} />
+          </div>
         </Sider>
-        <Layout style={{ padding: '0 24px 24px' }}>
-        
+        <Layout style={{ padding: '0 24px 24px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+
           <Content
             style={{
               padding: 24,
               margin: 0,
-              minHeight: 280,
+              flex: 1,
+              minHeight: 0,
+              overflow: 'auto',
               background: colorBgContainer,
               borderRadius: borderRadiusLG,
             }}
