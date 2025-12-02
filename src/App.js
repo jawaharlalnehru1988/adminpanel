@@ -21,6 +21,11 @@ import ExpenditureCategories from './ExpenditureCategories';
 import IncomeCategories from './IncomeCategories';
 import IncomePeriods from './IncomePeriods';
 import Title from 'antd/es/typography/Title';
+import QuickLinks from './QuickLinks';
+import FooterItems from './FooterItems';
+import FooterCategories from './FooterCategories';
+import BudgetSummary from './BudgetSummary';
+import ExpenditurePeriods from './ExpenditurePeriods';
 const { Header, Content, Sider } = Layout;
 
 const renderContent = (key) => {
@@ -29,9 +34,8 @@ const renderContent = (key) => {
     announcement: <Announcement />,
     'programme-highlights': <ProgrammeHighlights />,
     thought: <Thoughts />,
-    figures: <Figures />,
     officers: <Officers />,
-   'village-info': <VillageInfo />,
+    'village-info': <VillageInfo />,
     progress: <Progress />,
     administration: <Administration />,
     gallery: <Gallery />,
@@ -44,28 +48,35 @@ const renderContent = (key) => {
     'expenditure-categories': <ExpenditureCategories />,
     'income-categories': <IncomeCategories />,
     'income-periods': <IncomePeriods />,
+    'quick-links': <QuickLinks />,
+    'important-figures': <Figures />,
+    'administrative-members': <Administration />,
+    'photo-gallery': <Gallery />,
+    'footer-items': <FooterItems />,
+    'footer-categories': <FooterCategories />,
+    'budget-summary': <BudgetSummary />,
+    'expenditure-periods': <ExpenditurePeriods />,       
   };
 
   if (components[key]) {
     return components[key];
   }
 
-  const contentMap = {
-    home: 'Home Page',
-    announcement: 'Important Announcements',
-    'important-numbers': 'Important Numbers (Data Entry)',
-    govt: 'Government of Maharashtra',
-    officers: 'Office Bearers (Data Entry)',
-    'my-village': 'My Village (Data Entry)',
-    'quick-links': 'Quick Links',
-    'photo-gallery': 'Photo Gallery (Data Entry)',
-    advertisement: 'Advertisement',
-    'footer-links': 'Links & Footer',
-    'gram-panchayat': 'Amchi Gram Panchayat',
-    'village-history': 'Village History (Data Entry)',
-    'officers2': 'Officers (Data Entry)',
-  };
-  return contentMap[key] || 'Select a menu item';
+  // const contentMap = {
+  //   home: 'Home Page',
+  //   announcement: 'Important Announcements',
+  //   'important-figures': 'Important Figures',
+  //   'administrative-members': 'Administrative Members',
+  //   'my-village': 'My Village (Data Entry)',
+  //   'quick-links': 'Quick Links',
+  //   'photo-gallery': 'Photo Gallery',
+  //   advertisement: 'Advertisement',
+  //   'footer-links': 'Links & Footer',
+  //   'gram-panchayat': 'Amchi Gram Panchayat',
+  //   'village-history': 'Village History',
+  //   'officers2': 'Officers (Data Entry)',
+  // };
+  return 'Select a menu item';
 };
 
 const App = () => {

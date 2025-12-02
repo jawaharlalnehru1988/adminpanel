@@ -1,15 +1,4 @@
 import { Menu, Select } from "antd";
-import {
-  HomeOutlined,
-  UserOutlined,
-  FileImageOutlined,
-  LinkOutlined,
-  TeamOutlined,
-  HistoryOutlined,
-  FileTextOutlined,
-  BgColorsOutlined,
-} from "@ant-design/icons";
-
 import { useTranslation } from "react-i18next";
 
 const getItems = (t) => [
@@ -22,14 +11,15 @@ const getItems = (t) => [
       { key: "announcement", label: t("menu.announcement", { defaultValue: "Important Announcements" }) },
       { key: "programme-highlights", label: t("menu.programmeHighlights", { defaultValue: "Programme Highlights" }) },
       { key: "thought", label: t("menu.thought", { defaultValue: "Thoughts" }) },
-      { key: "important-numbers", label: t("menu.importantNumbers", { defaultValue: "Important Numbers (Data Entry)" }) },
+      { key: "important-figures", label: t("menu.importantFigures", { defaultValue: "Important Figures" }) },
       { key: "progress", label: t("menu.progress", { defaultValue: "प्रगती मीटर" }) },
-      { key: "govt", label: t("menu.govt", { defaultValue: "Government of Maharashtra" }) },
-      { key: "officers", label: t("menu.officeBearers", { defaultValue: "Office Bearers (Data Entry)" }) },
+      { key: "administrative-members", label: t("menu.administrativeMembers", { defaultValue: "Administrative Members" }) },
+      { key: "officers", label: t("menu.officeBearers", { defaultValue: "Officers" }) },
       { key: "quick-links", label: t("menu.quickLinks", { defaultValue: "Quick Links" }) },
       { key: "photo-gallery", label: t("menu.photoGallery", { defaultValue: "Photo Gallery (Data Entry)" }) },
       { key: "advertisement", label: t("menu.advertisement", { defaultValue: "Advertisement" }) },
-      { key: "footer-links", label: t("menu.footerLinks", { defaultValue: "Links & Footer" }) },
+      { key: "footer-categories", label: t("menu.footerCategories", { defaultValue: "Footer Categories" }) },
+      { key: "footer-items", label: t("menu.footerItems", { defaultValue: "Footer Items" }) },
     ],
   },
   {
@@ -37,9 +27,9 @@ const getItems = (t) => [
     type: "divider",
     label: t("menu.ourPanchayat", { defaultValue: "आमची ग्रामपंचायत" }),
     children: [
-      { key: "village-info", label: t("menu.villageHistory", { defaultValue: "Village History (Data Entry)" }) },
-      { key: "administration", label: t("menu.administration", { defaultValue: "Administration" }) },
-      { key: "officers2", label: t("menu.officers", { defaultValue: "Officers (Data Entry)" }) },
+      { key: "village-info", label: t("menu.villageHistory", { defaultValue: "Village History" }) },
+      // { key: "administration", label: t("menu.administration", { defaultValue: "Administration" }) },
+      { key: "officers", label: t("menu.officers", { defaultValue: "Officers" }) },
     ],
   },
   {
@@ -69,14 +59,13 @@ const getItems = (t) => [
     type: "divider",
     label: t("menu.finance", { defaultValue: "गवाचा अर्थ संकल्प" }),
     children: [
-      { key: "expenditure-categories", label: t("menu.expenditureCategories", { defaultValue: "Expenditure Categories" }) },
-      { key: "additional-income-categories", label: t("menu.additionalIncomeCategories", { defaultValue: "Additional Income Categories (Date entry)" }) },
-      { key: "additional-categories", label: t("menu.additionalCategories", { defaultValue: "Additional Categories (Date entry)" }) },
-      { key: "budget-summary", label: t("menu.budgetSummary", { defaultValue: "Budget Summary (Date entry)" }) },
+      { key: "budget-summary", label: t("menu.budgetSummary", { defaultValue: "Budget Summary" }) },
       { key: "income-categories", label: t("menu.incomeCategories", { defaultValue: "Income Categories" }) },
       { key: "income-periods", label: t("menu.incomePeriods", { defaultValue: "Income Periods" }) },
-      { key: "expenditure-periods", label: t("menu.expenditurePeriods", { defaultValue: "Expenditure Period (Data Entry)" }) },
-      { key: "figures", label: t("menu.figures", { defaultValue: "Figures / Key Numbers" }) },
+      { key: "expenditure-categories", label: t("menu.expenditureCategories", { defaultValue: "Expenditure Categories" }) },
+      { key: "expenditure-periods", label: t("menu.expenditurePeriods", { defaultValue: "Expenditure Period" }) },
+      { key: "additional-income-categories", label: t("menu.additionalIncomeCategories", { defaultValue: "Additional Income Categories (Date entry)" }) },
+      { key: "additional-categories", label: t("menu.additionalCategories", { defaultValue: "Additional Categories (Date entry)" }) },
     ],
   },
   {
