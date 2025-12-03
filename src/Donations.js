@@ -48,7 +48,6 @@ const Donations = () => {
       description: record.description,
       description_en: record.description_en,
       language: record.language,
-      clientId: record.clientId,
     });
     setIsModalOpen(true);
   };
@@ -88,7 +87,6 @@ const Donations = () => {
       description: values.description || '',
       description_en: values.description_en || '',
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -118,7 +116,6 @@ const Donations = () => {
     { title: 'Amount (raw)', dataIndex: 'amount', key: 'amount' },
     { title: 'Description', dataIndex: 'description', key: 'description', render: d => <div style={{maxWidth:300, whiteSpace:'normal'}}>{d}</div> },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Created', dataIndex: 'created_at', key: 'created_at' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
@@ -199,10 +196,6 @@ const Donations = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -217,7 +210,6 @@ const Donations = () => {
             <p><strong>Amount (raw):</strong> {viewing.amount}</p>
             <p><strong>Description:</strong><br/>{viewing.description}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
             <p><strong>Created At:</strong> {viewing.created_at}</p>
           </div>
         )}

@@ -42,6 +42,7 @@ const Login = ({ onLoginSuccess }) => {
         username: username.trim(),
         password: password,
       });
+      console.log('Login response:', response.data);
 
       const { token } = response.data;
 

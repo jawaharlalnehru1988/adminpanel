@@ -10,7 +10,6 @@ const VillageService = {
     formData.append('order', data.order != null ? data.order : '0');
     formData.append('tags', data.tags || '');
     if (data.language) formData.append('language', data.language);
-    if (data.clientId) formData.append('clientId', data.clientId);
 
     if (file) {
       formData.append('image', file);
@@ -37,7 +36,6 @@ const VillageService = {
       formData.append('order', data.order != null ? data.order : '0');
       formData.append('tags', data.tags || '');
       if (data.language) formData.append('language', data.language);
-      if (data.clientId) formData.append('clientId', data.clientId);
       formData.append('image', file);
 
       if (process.env.NODE_ENV === 'development') {
@@ -59,7 +57,6 @@ const VillageService = {
       tags: data.tags || '',
     };
     if (data.language) payload.language = data.language;
-    if (data.clientId) payload.clientId = data.clientId;
 
     // include keep_image flag so backend knows to preserve existing image
     payload.keep_image = true;

@@ -10,7 +10,6 @@ const AdministrationService = {
     formData.append('contact', data.contact || '');
     formData.append('tags', data.tags || '');
     formData.append('language', data.language || '');
-    formData.append('clientId', data.clientId || '');
     formData.append('whatsapp', data.whatsapp || '');
     formData.append('order', data.order != null ? data.order : '0');
 
@@ -32,7 +31,6 @@ const AdministrationService = {
       formData.append('contact', data.contact || '');
       formData.append('tags', data.tags || '');
       formData.append('language', data.language || '');
-      formData.append('clientId', data.clientId || '');
       formData.append('whatsapp', data.whatsapp || '');
       formData.append('order', data.order != null ? data.order : '0');
       formData.append('image', file);
@@ -55,7 +53,6 @@ const AdministrationService = {
       contact: data.contact || '',
       tags: data.tags || '',
       language: data.language || '',
-      clientId: data.clientId || '',
       whatsapp: data.whatsapp || '',
       order: data.order != null ? data.order : 0,
       keep_image: true,

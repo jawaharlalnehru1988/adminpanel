@@ -9,18 +9,13 @@ import {
   Switch,
   Select,
   message,
-  Tabs,
   Space,
-  Grid,
 } from 'antd';
 import { PlusOutlined, EditOutlined, DeleteOutlined, EyeOutlined, UploadOutlined } from '@ant-design/icons';
 import BannerService from './services/BannerService';
 
-const { useBreakpoint } = Grid;
-
 const Banner = () => {
   const [form] = Form.useForm();
-  const screens = useBreakpoint();
   const [banners, setBanners] = useState([
     {
       id: 7,
@@ -29,7 +24,6 @@ const Banner = () => {
       background_image: 'https://sooooper.com/media/banner/carousel-item_1.png',
       is_active: true,
       language: 'English',
-      clientId: '1',
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -75,7 +69,6 @@ const Banner = () => {
           title: values.title,
           subtitle: values.subtitle,
           language: values.language,
-          clientId: values.clientId,
           is_active: values.is_active,
         };
         // PUT request to update (send JSON payload when no new file)
@@ -178,21 +171,17 @@ const Banner = () => {
       title: 'Title',
       dataIndex: 'title',
       key: 'title',
-      render: (text) => <span>{text}</span>,
-      responsive: ['md'],
     },
     {
       title: 'Subtitle',
       dataIndex: 'subtitle',
       key: 'subtitle',
-      render: (text) => <span>{text}</span>,
-      responsive: ['lg'],
+      render: (text) => <div style={{ maxWidth: 300, whiteSpace: 'normal' }}>{text}</div>,
     },
     {
       title: 'Language',
       dataIndex: 'language',
       key: 'language',
-      responsive: ['md'],
     },
     {
       title: 'Active',
@@ -203,93 +192,51 @@ const Banner = () => {
     {
       title: 'Actions',
       key: 'actions',
-      width: screens.lg ? 200 : screens.md ? 150 : 120,
       render: (_, record) => (
-        <Space wrap size={screens.md ? 'middle' : 'small'}>
-          <Button
-            type="primary"
-            size={screens.md ? 'small' : 'small'}
-            icon={<EyeOutlined />}
-            onClick={() => handleView(record)}
-          >
-            {screens.md && 'View'}
-          </Button>
-          <Button
-            type="default"
-            size={screens.md ? 'small' : 'small'}
-            icon={<EditOutlined />}
-            onClick={() => handleEdit(record)}
-          >
-            {screens.md && 'Edit'}
-          </Button>
-          <Button
-            type="primary"
-            danger
-            size={screens.md ? 'small' : 'small'}
-            icon={<DeleteOutlined />}
-            onClick={() => handleDelete(record.id)}
-          >
-            {screens.md && 'Delete'}
-          </Button>
+        <Space>
+          <Button icon={<EyeOutlined />} size="small" onClick={() => handleView(record)}>View</Button>
+          <Button icon={<EditOutlined />} size="small" onClick={() => handleEdit(record)}>Edit</Button>
+          <Button danger icon={<DeleteOutlined />} size="small" onClick={() => handleDelete(record.id)}>Delete</Button>
         </Space>
       ),
     },
   ];
 
   return (
-    <div style={{ 
-      padding: screens.xs ? '12px' : screens.sm ? '16px' : '20px',
-      overflow: 'hidden'
-    }}>
-      <Tabs
-        items={[
-          {
-            key: 'list',
-            label: 'Banner List',
-            children: (
-              <div>
-                <Button
-                  type="primary"
-                  icon={<PlusOutlined />}
-                  onClick={() => {
-                    setEditingBanner(null);
-                    form.resetFields();
-                    setUploadedImageUrl(null);
-                    setSelectedFile(null);
-                    setIsModalVisible(true);
-                  }}
-                  style={{ marginBottom: '16px', width: screens.xs ? '100%' : 'auto' }}
-                  block={screens.xs}
-                >
-                  Add New Banner
-                </Button>
-                <Table
-                  columns={columns}
-                  dataSource={banners}
-                  loading={loading}
-                  rowKey="id"
-                  pagination={{ 
-                    pageSize: screens.xs ? 5 : screens.sm ? 7 : 10,
-                    responsive: true,
-                    showSizeChanger: screens.md,
-                  }}
-                  scroll={{ x: 'max-content' }}
-                  size={screens.md ? 'middle' : 'small'}
-                />
-              </div>
-            ),
-          },
-        ]}
+    <div style={{ padding: 16 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12, gap: 12 }}>
+        <h3 style={{ margin: 0 }}>Banners</h3>
+        <div style={{ flexShrink: 0 }}>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => {
+              setEditingBanner(null);
+              form.resetFields();
+              setUploadedImageUrl(null);
+              setSelectedFile(null);
+              setIsModalVisible(true);
+            }}
+          >
+            Add
+          </Button>
+        </div>
+      </div>
+
+      <Table
+        columns={columns}
+        dataSource={banners}
+        loading={loading}
+        rowKey="id"
+        pagination={{ pageSize: 10 }}
       />
 
       {/* Add/Edit Modal */}
       <Modal
-        title={editingBanner ? 'Edit Banner' : 'Add New Banner'}
+        title={editingBanner ? 'Edit Banner' : 'Create Banner'}
         open={isModalVisible}
         onCancel={handleModalClose}
         footer={null}
-        width={screens.xs ? '95%' : screens.sm ? '90%' : screens.md ? '600px' : '600px'}
-        style={{ top: screens.xs ? 20 : 'auto' }}
       >
         <Form
           form={form}
@@ -305,7 +252,7 @@ const Banner = () => {
             name="title"
             rules={[{ required: true, message: 'Please enter banner title' }]}
           >
-            <Input placeholder="Enter banner title" size={screens.md ? 'middle' : 'large'} />
+            <Input placeholder="Enter banner title" />
           </Form.Item>
 
           <Form.Item
@@ -313,11 +260,7 @@ const Banner = () => {
             name="subtitle"
             rules={[{ required: true, message: 'Please enter banner subtitle' }]}
           >
-            <Input.TextArea 
-              placeholder="Enter banner subtitle" 
-              rows={screens.xs ? 2 : 3}
-              size={screens.md ? 'middle' : 'large'}
-            />
+            <Input.TextArea placeholder="Enter banner subtitle" rows={3} />
           </Form.Item>
 
           <Form.Item
@@ -331,24 +274,20 @@ const Banner = () => {
               beforeUpload={handleImageUpload}
               listType="picture"
             >
-              <Button icon={<UploadOutlined />} block={screens.xs}>Choose File</Button>
+              <Button icon={<UploadOutlined />}>Choose File</Button>
             </Upload>
             {uploadedImageUrl && (
               <div style={{ marginTop: '10px' }}>
                 <img
                   src={uploadedImageUrl}
                   alt="preview"
-                  style={{ 
-                    maxWidth: '100%', 
-                    maxHeight: screens.xs ? '150px' : '200px',
-                    borderRadius: '4px'
-                  }}
+                  style={{ maxWidth: '100%', maxHeight: '200px', borderRadius: '4px' }}
                 />
               </div>
             )}
           </Form.Item>
 
-          <Form.Item label="Is active" name="is_active" valuePropName="checked">
+          <Form.Item label="Active" name="is_active" valuePropName="checked">
             <Switch />
           </Form.Item>
 
@@ -358,33 +297,18 @@ const Banner = () => {
             rules={[{ required: true, message: 'Please select language' }]}
           >
             <Select
-              placeholder="Select language"
+              allowClear
               options={[
                 { label: 'English', value: 'English' },
                 { label: 'Marathi', value: 'Marathi' },
                 { label: 'Hindi', value: 'Hindi' },
               ]}
-              size={screens.md ? 'middle' : 'large'}
             />
           </Form.Item>
 
-          <Form.Item
-            label="ClientId"
-            name="clientId"
-            rules={[{ required: true, message: 'Please enter client ID' }]}
-          >
-            <Input placeholder="Enter client ID" size={screens.md ? 'middle' : 'large'} />
-          </Form.Item>
-
           <Form.Item>
-            <Button 
-              type="primary" 
-              htmlType="submit" 
-              block 
-              loading={loading}
-              size={screens.md ? 'middle' : 'large'}
-            >
-              {editingBanner ? 'Update Banner' : 'Create Banner'}
+            <Button type="primary" htmlType="submit" block loading={loading}>
+              {editingBanner ? 'Update' : 'Create'}
             </Button>
           </Form.Item>
         </Form>
@@ -392,48 +316,26 @@ const Banner = () => {
 
       {/* View Modal */}
       <Modal
-        title="Banner Details"
+        title="Banner"
         open={isViewModalVisible}
         onCancel={() => setIsViewModalVisible(false)}
-        footer={[
-          <Button key="close" onClick={() => setIsViewModalVisible(false)}>
-            Close
-          </Button>,
-        ]}
-        width={screens.xs ? '95%' : screens.sm ? '90%' : screens.md ? '600px' : '600px'}
-        style={{ top: screens.xs ? 20 : 'auto' }}
+        footer={[<Button key="close" onClick={() => setIsViewModalVisible(false)}>Close</Button>]}
       >
         {viewingBanner && (
-          <div style={{ maxWidth: '100%', wordBreak: 'break-word' }}>
-            <p>
-              <strong>Title:</strong> {viewingBanner.title}
-            </p>
-            <p>
-              <strong>Subtitle:</strong> {viewingBanner.subtitle}
-            </p>
-            <p>
-              <strong>Language:</strong> {viewingBanner.language}
-            </p>
-            <p>
-              <strong>Client ID:</strong> {viewingBanner.clientId}
-            </p>
-            <p>
-              <strong>Active:</strong> {viewingBanner.is_active ? 'Yes' : 'No'}
-            </p>
-            <p>
-              <strong>Background Image:</strong>
-            </p>
+          <div>
+            <p><strong>Title:</strong> {viewingBanner.title}</p>
+            <p><strong>Subtitle:</strong> {viewingBanner.subtitle}</p>
+            <p><strong>Language:</strong> {viewingBanner.language}</p>
+            <p><strong>Active:</strong> {viewingBanner.is_active ? 'Yes' : 'No'}</p>
             {viewingBanner.background_image && (
-              <img
-                src={viewingBanner.background_image}
-                alt="banner"
-                style={{ 
-                  maxWidth: '100%', 
-                  maxHeight: screens.xs ? '200px' : '300px',
-                  marginTop: '10px',
-                  borderRadius: '4px'
-                }}
-              />
+              <p>
+                <strong>Background Image:</strong><br />
+                <img
+                  src={viewingBanner.background_image}
+                  alt="banner"
+                  style={{ maxWidth: '100%', maxHeight: '300px', marginTop: '10px', borderRadius: '4px' }}
+                />
+              </p>
             )}
           </div>
         )}

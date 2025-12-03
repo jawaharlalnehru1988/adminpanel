@@ -41,7 +41,6 @@ const Announcement = () => {
       date: record.date ? dayjs(record.date) : null,
       is_active: !!record.is_active,
       language: record.language || undefined,
-      clientId: record.clientId || undefined,
     });
     setIsModalOpen(true);
   };
@@ -74,7 +73,6 @@ const Announcement = () => {
       date: values.date ? values.date.format('YYYY-MM-DD') : null,
       is_active: !!values.is_active,
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -102,7 +100,6 @@ const Announcement = () => {
     { title: 'Date', dataIndex: 'date', key: 'date' },
     { title: 'Active', dataIndex: 'is_active', key: 'is_active', render: v => v ? 'Yes' : 'No' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -143,9 +140,6 @@ const Announcement = () => {
           <Form.Item name="language" label="Language">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>
               {editing ? 'Update' : 'Create'}
@@ -161,7 +155,6 @@ const Announcement = () => {
             <p><strong>Date:</strong> {viewing.date}</p>
             <p><strong>Active:</strong> {viewing.is_active ? 'Yes' : 'No'}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

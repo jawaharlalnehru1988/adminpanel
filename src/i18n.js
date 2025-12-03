@@ -23,7 +23,7 @@ const resources = {
       "menu.administration": "Administration",
       "menu.officers": "Officers",
       "menu.yourVillage": "Your Village",
-      "menu.myVillage": "My Village (Data Entry)",
+      "menu.myVillage": "My Village",
       "menu.projectsAndSchemes": "Projects and Schemes",
       "menu.projects": "Projects / Ongoing Works",
       "menu.projectGallery": "Project Gallery",
@@ -45,7 +45,7 @@ const resources = {
       "menu.villageHangout": "Village Hangout",
       "menu.prosperousPanchayat": "Prosperous Panchayat",
       "menu.digitalLibrary": "Digital Library",
-      "menu.digitalLibraryEntry": "Digital Library (Data Entry)"
+      "menu.digitalLibraryEntry": "Digital Library"
     }
   },
   mr: {
@@ -69,7 +69,7 @@ const resources = {
       "menu.administration": "प्रशासन",
       "menu.officers": "अधिकारी",
       "menu.yourVillage": "आपले गाव",
-      "menu.myVillage": "माझे गाव (डेटा एंट्री)",
+      "menu.myVillage": "माझे गाव",
       "menu.projectsAndSchemes": "योजना आणि प्रकल्प",
       "menu.projects": "प्रकल्प / चालू कामे",
       "menu.projectGallery": "प्रकल्प गॅलरी",
@@ -91,7 +91,7 @@ const resources = {
       "menu.villageHangout": "गावाचा कट्टा",
       "menu.prosperousPanchayat": "समृद्ध ग्रामपंचायत",
       "menu.digitalLibrary": "डिजिटल ग्रंथालय",
-      "menu.digitalLibraryEntry": "डिजिटल ग्रंथालय (डेटा एंट्री)"
+      "menu.digitalLibraryEntry": "डिजिटल ग्रंथालय"
     }
   }
 };

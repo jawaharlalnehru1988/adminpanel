@@ -46,7 +46,6 @@ const Advertisement = () => {
       title: record.title,
       link: record.link,
       language: record.language,
-      clientId: record.clientId,
     });
     setSelectedFile(null);
     setPreviewUrl(record.image || null);
@@ -102,7 +101,6 @@ const Advertisement = () => {
       title: values.title,
       link: values.link || '',
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -148,7 +146,6 @@ const Advertisement = () => {
     { title: 'Image', dataIndex: 'image', key: 'image', render: (v) => v ? <Image src={v} width={80} /> : null },
     { title: 'Link', dataIndex: 'link', key: 'link', render: (v) => v ? <a href={v} target="_blank" rel="noopener noreferrer">{v.substring(0, 30)}...</a> : null },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -207,10 +204,6 @@ const Advertisement = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -224,7 +217,6 @@ const Advertisement = () => {
             {viewing.image && <p><strong>Image:</strong><br/><img src={viewing.image} alt="ad" style={{maxWidth:300}}/></p>}
             <p><strong>Link:</strong> {viewing.link ? <a href={viewing.link} target="_blank" rel="noopener noreferrer">{viewing.link}</a> : 'N/A'}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

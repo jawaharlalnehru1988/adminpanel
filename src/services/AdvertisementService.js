@@ -8,7 +8,6 @@ const AdvertisementService = {
     formData.append('title', data.title || '');
     formData.append('link', data.link || '');
     formData.append('language', data.language || '');
-    formData.append('clientId', data.clientId || '');
 
     if (file) {
       formData.append('image', file);
@@ -25,7 +24,6 @@ const AdvertisementService = {
       formData.append('title', data.title || '');
       formData.append('link', data.link || '');
       formData.append('language', data.language || '');
-      formData.append('clientId', data.clientId || '');
       formData.append('image', file);
 
       if (process.env.NODE_ENV === 'development') {
@@ -44,7 +42,6 @@ const AdvertisementService = {
       title: data.title || '',
       link: data.link || '',
       language: data.language || '',
-      clientId: data.clientId || '',
       keep_image: true,
     };
 

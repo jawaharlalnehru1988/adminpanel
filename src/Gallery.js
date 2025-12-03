@@ -45,7 +45,6 @@ const Gallery = () => {
     form.setFieldsValue({
       title: record.title,
       language: record.language,
-      clientId: record.clientId,
     });
     setSelectedFile(null);
     setPreviewUrl(record.image || null);
@@ -100,7 +99,6 @@ const Gallery = () => {
     const payload = {
       title: values.title,
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -145,7 +143,6 @@ const Gallery = () => {
     { title: 'Title', dataIndex: 'title', key: 'title', render: t => <div style={{maxWidth:300, whiteSpace:'normal'}}>{t}</div> },
     { title: 'Image', dataIndex: 'image', key: 'image', render: (v) => v ? <Image src={v} width={80} /> : null },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -194,10 +191,6 @@ const Gallery = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -210,7 +203,6 @@ const Gallery = () => {
             <p><strong>Title:</strong> {viewing.title}</p>
             {viewing.image && <p><strong>Image:</strong><br/><img src={viewing.image} alt="gallery" style={{maxWidth:300}}/></p>}
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
             {viewing.created_at && <p><strong>Created:</strong> {new Date(viewing.created_at).toLocaleString()}</p>}
           </div>
         )}

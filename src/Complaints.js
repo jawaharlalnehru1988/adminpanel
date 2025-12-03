@@ -44,7 +44,6 @@ const Complaints = () => {
       send_to: record.send_to,
       message: record.message,
       language: record.language,
-      clientId: record.clientId,
     });
     setIsModalOpen(true);
   };
@@ -79,7 +78,6 @@ const Complaints = () => {
       send_to: values.send_to || '',
       message: values.message || '',
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -176,10 +174,6 @@ const Complaints = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -195,7 +189,6 @@ const Complaints = () => {
             <p><strong>Send To:</strong> {viewing.send_to}</p>
             <p><strong>Message:</strong><br/>{viewing.message}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
             <p><strong>Created At:</strong> {viewing.created_at}</p>
           </div>
         )}

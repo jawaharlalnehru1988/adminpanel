@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Table, Button, Modal, Form, Input, Select, message, Space } from 'antd'
 import { PlusOutlined, EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons'
+import QuickLinkService from './services/QuickLinkService'
 // Note: API calls are left as TODOs per request (no real service call wired)
 
 const QuickLinks = () => {
@@ -16,9 +17,8 @@ const QuickLinks = () => {
     setLoading(true)
     try {
       // TODO: replace with real API call
-      // const res = await QuickLinkService.getQuickLinks()
-      // setList(res.data || [])
-      setList([])
+      const res = await QuickLinkService.getQuickLinks()
+      setList(res.data || [])
     } catch (err) {
       console.error(err)
       message.error('Failed to load quick links')
@@ -42,7 +42,6 @@ const QuickLinks = () => {
       url: record.url,
       icon: record.icon,
       language: record.language,
-      clientId: record.clientId,
     })
     setIsModalOpen(true)
   }
@@ -54,7 +53,7 @@ const QuickLinks = () => {
       async onOk() {
         try {
           // TODO: replace with real API call
-          // await QuickLinkService.deleteQuickLink(id)
+          await QuickLinkService.deleteQuickLink(id)
           message.success('Deleted')
           fetch()
         } catch (err) {
@@ -76,7 +75,6 @@ const QuickLinks = () => {
       url: values.url,
       icon: values.icon || null,
       language: values.language || null,
-      clientId: values.clientId || null,
     }
 
     setLoading(true)
@@ -85,11 +83,11 @@ const QuickLinks = () => {
       console.log('QuickLink payload (not sent):', payload)
       if (editing) {
         // TODO: replace with real API call
-        // await QuickLinkService.updateQuickLink(editing.id, payload)
+        await QuickLinkService.updateQuickLink(editing.id, payload)
         message.success('Updated')
       } else {
         // TODO: replace with real API call
-        // await QuickLinkService.createQuickLink(payload)
+        await QuickLinkService.createQuickLink(payload)
         message.success('Created')
       }
       setIsModalOpen(false)
@@ -108,7 +106,6 @@ const QuickLinks = () => {
     { title: 'Url', dataIndex: 'url', key: 'url', render: (t) => <div style={{maxWidth:300, whiteSpace: 'nowrap', overflow:'hidden', textOverflow:'ellipsis'}} title={t}>{t}</div> },
     { title: 'Icon', dataIndex: 'icon', key: 'icon' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -149,9 +146,6 @@ const QuickLinks = () => {
           <Form.Item name="language" label="Language">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>
               {editing ? 'Update' : 'Create'}
@@ -167,7 +161,6 @@ const QuickLinks = () => {
             <p><strong>Url:</strong> {viewing.url}</p>
             <p><strong>Icon:</strong> {viewing.icon}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

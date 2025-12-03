@@ -53,7 +53,6 @@ const Projects = () => {
       end_date: record.end_date,
       is_featured: record.is_featured,
       language: record.language,
-      clientId: record.clientId,
     });
     setSelectedFile(null);
     setPreviewUrl(record.cover_image || null);
@@ -110,7 +109,6 @@ const Projects = () => {
       end_date: values.end_date || null,
       is_featured: values.is_featured || false,
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -162,7 +160,6 @@ const Projects = () => {
     { title: 'Cover', dataIndex: 'cover_image', key: 'cover_image', render: (v) => v ? <img src={v} alt="cover" style={{maxWidth:80, maxHeight:60}} crossOrigin="anonymous" /> : null },
     { title: 'Location', dataIndex: 'location', key: 'location' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -249,10 +246,6 @@ const Projects = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -272,7 +265,6 @@ const Projects = () => {
             <p><strong>End Date:</strong> {viewing.end_date || 'N/A'}</p>
             <p><strong>Featured:</strong> {viewing.is_featured ? 'Yes' : 'No'}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>
