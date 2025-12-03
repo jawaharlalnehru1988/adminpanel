@@ -8,14 +8,23 @@ const axiosInstance = axios.create({
   },
 });
 
+export const isAuthenticated = () => {
+  return !!localStorage.getItem('authToken');
+};
+
+export const clearAuth = () => {
+  localStorage.removeItem('authToken');
+};
+
 // Request interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
-    // Add token if available
+    // Add JWT token to Authorization header for all requests
     const token = localStorage.getItem('authToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
     // Don't force JSON content-type for multipart/form-data
     if (config.data instanceof FormData) {
       delete config.headers['Content-Type'];

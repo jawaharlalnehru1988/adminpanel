@@ -1,16 +1,18 @@
+import axiosInstance from "./axiosInstance"
+
 const QuickLinkService = {
   // Stubbed service: replace with real API calls
   getQuickLinks: async () => {
-    return { data: [] }
+    return axiosInstance.get('/api/quick-links/')
   },
-  createQuickLink: async (payload) => {
-    return { data: payload }
+  createQuickLink: async (data) => {
+    return axiosInstance.post('/api/quick-links/', data)
   },
-  updateQuickLink: async (id, payload) => {
-    return { data: payload }
+  updateQuickLink: async (id, data) => {
+    return axiosInstance.put(`/api/quick-links/${id}/`, data)
   },
   deleteQuickLink: async (id) => {
-    return { }
+    return axiosInstance.delete(`/api/quick-links/${id}/`)
   }
 }
 
