@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Layout, theme } from 'antd';
+import { Layout, theme, Button } from 'antd';
+import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import AppMenu from './Menu';
 import Banner from './Banner';
 import Announcement from './Announcement';
@@ -26,6 +27,8 @@ import FooterItems from './FooterItems';
 import FooterCategories from './FooterCategories';
 import BudgetSummary from './BudgetSummary';
 import ExpenditurePeriods from './ExpenditurePeriods';
+import Login from './Login';
+import { isAuthenticated, clearAuth } from './services/axiosInstance';
 const { Header, Content, Sider } = Layout;
 
 const renderContent = (key) => {
@@ -82,11 +85,22 @@ const renderContent = (key) => {
 const App = () => {
   const [selectedKey, setSelectedKey] = useState('home');
   const [siderWidth, setSiderWidth] = useState(240);
+  const [loggedIn, setLoggedIn] = useState(isAuthenticated());
   const siderRef = useRef(null);
   const isResizingRef = useRef(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
+  const handleLoginSuccess = () => {
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    clearAuth();
+    setLoggedIn(false);
+  };
+
   useEffect(() => {
     const onMouseMove = (e) => {
       if (!isResizingRef.current) return;
@@ -114,14 +128,31 @@ const App = () => {
     document.body.style.userSelect = 'none';
   };
 
+  // If not logged in, show the login page
+  if (!loggedIn) {
+    return <Login onLoginSuccess={handleLoginSuccess} />;
+  }
+
   return (
     <Layout style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      <Header >
-        <div className="demo-logo" >
+      <Header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div className="demo-logo" style={{ display: 'flex', alignItems: 'center' }}>
           {/* indian flag or logo can be placed here */}
           <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="Indian Flag" style={{ height: '32px' }} />
-         <Title level={3} style={{ color: 'white', marginLeft: '10px', display: 'inline-block' }}>GP Admin Panel</Title>
+         <Title level={3} style={{ color: 'white', marginLeft: '10px', display: 'inline-block', margin: 0 }}>GP Admin Panel</Title>
         </div>
+        <Button 
+          type="primary" 
+          icon={<LogoutOutlined />}
+          onClick={handleLogout}
+          style={{
+            background: 'transparent',
+            borderColor: 'white',
+            color: 'white',
+          }}
+        >
+          Logout
+        </Button>
       </Header>
       <Layout className='' style={{ display: 'flex', flex: 1 }}>
         <Sider
