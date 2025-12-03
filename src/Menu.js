@@ -52,7 +52,8 @@ const getItems = (t) => [
     key: "divider5",
     type: "divider",
     label: t("menu.citizenServices", { defaultValue: "नागरिक सेवा" }),
-    children: [{ key: "complaints", label: t("menu.complaints", { defaultValue: "Complaints" }) }],
+    children: [{ key: "complaints", label: t("menu.complaints", { defaultValue: "Complaints" }) },
+    { key: "tax-payment", label: t("menu.taxPayment", { defaultValue: "Tax Payment" }) }],
   },
   {
     key: "divider6",
@@ -97,7 +98,7 @@ const getItems = (t) => [
     type: "divider",
     label: t("menu.digitalLibrary", { defaultValue: "डिजिटल ग्रंथालय" }),
     children: [
-      { label: t("menu.digitalLibraryEntry", { defaultValue: "Digital Library (Data Entry)" }), key: "digital-library" },
+      { label: t("menu.digitalLibraryEntry", { defaultValue: "Digital Library" }), key: "digital-library" },
     ],
   },
   // {

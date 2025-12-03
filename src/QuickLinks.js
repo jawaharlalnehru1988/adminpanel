@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Table, Button, Modal, Form, Input, Select, message, Space } from 'antd'
 import { PlusOutlined, EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons'
+import QuickLinkService from './services/QuickLinkService'
 // Note: API calls are left as TODOs per request (no real service call wired)
 
 const QuickLinks = () => {
@@ -16,9 +17,8 @@ const QuickLinks = () => {
     setLoading(true)
     try {
       // TODO: replace with real API call
-      // const res = await QuickLinkService.getQuickLinks()
-      // setList(res.data || [])
-      setList([])
+      const res = await QuickLinkService.getQuickLinks()
+      setList(res.data || [])
     } catch (err) {
       console.error(err)
       message.error('Failed to load quick links')
@@ -53,7 +53,7 @@ const QuickLinks = () => {
       async onOk() {
         try {
           // TODO: replace with real API call
-          // await QuickLinkService.deleteQuickLink(id)
+          await QuickLinkService.deleteQuickLink(id)
           message.success('Deleted')
           fetch()
         } catch (err) {
@@ -83,11 +83,11 @@ const QuickLinks = () => {
       console.log('QuickLink payload (not sent):', payload)
       if (editing) {
         // TODO: replace with real API call
-        // await QuickLinkService.updateQuickLink(editing.id, payload)
+        await QuickLinkService.updateQuickLink(editing.id, payload)
         message.success('Updated')
       } else {
         // TODO: replace with real API call
-        // await QuickLinkService.createQuickLink(payload)
+        await QuickLinkService.createQuickLink(payload)
         message.success('Created')
       }
       setIsModalOpen(false)

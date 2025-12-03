@@ -29,6 +29,8 @@ import BudgetSummary from './BudgetSummary';
 import ExpenditurePeriods from './ExpenditurePeriods';
 import Login from './Login';
 import { isAuthenticated, clearAuth } from './services/axiosInstance';
+import DigitalLibrary from './DigitalLibrary';
+import TaxPayment from './TaxPayment';
 const { Header, Content, Sider } = Layout;
 
 const renderContent = (key) => {
@@ -58,7 +60,10 @@ const renderContent = (key) => {
     'footer-items': <FooterItems />,
     'footer-categories': <FooterCategories />,
     'budget-summary': <BudgetSummary />,
-    'expenditure-periods': <ExpenditurePeriods />,       
+    'expenditure-periods': <ExpenditurePeriods />,     
+    'digital-library': <DigitalLibrary />,
+    'my-village': <VillageInfo />,
+    'tax-payment': <TaxPayment />,
   };
 
   if (components[key]) {
