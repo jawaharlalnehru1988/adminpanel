@@ -60,7 +60,6 @@ const ProjectGallery = () => {
       image_type: record.image_type,
       order: record.order,
       language: record.language,
-      clientId: record.clientId,
       project: record.project,
     });
     setSelectedFile(null);
@@ -114,7 +113,6 @@ const ProjectGallery = () => {
       image_type: values.image_type || 'before',
       order: values.order || 0,
       language: values.language || null,
-      clientId: values.clientId || null,
       project: values.project || null,
     };
 
@@ -167,7 +165,6 @@ const ProjectGallery = () => {
     { title: 'Order', dataIndex: 'order', key: 'order' },
     { title: 'Project', dataIndex: 'project', key: 'project', render: (p) => p ? p : null },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -244,10 +241,6 @@ const ProjectGallery = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -264,7 +257,6 @@ const ProjectGallery = () => {
             <p><strong>Order:</strong> {viewing.order}</p>
             <p><strong>Project:</strong> {viewing.project}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

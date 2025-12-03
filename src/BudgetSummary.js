@@ -55,7 +55,6 @@ const BudgetSummary = () => {
       totalIncome: record.totalIncome,
       totalExpense: record.totalExpense,
       balance: record.balance,
-      clientId: record.clientId,
       language: record.language,
     })
     setIsModalOpen(true)
@@ -91,7 +90,6 @@ const BudgetSummary = () => {
       totalIncome: values.totalIncome || null,
       totalExpense: values.totalExpense || null,
       balance: values.balance || null,
-      clientId: values.clientId || null,
       language: values.language || null,
     }
 
@@ -129,7 +127,6 @@ const BudgetSummary = () => {
     { title: 'Total income', dataIndex: 'totalIncome', key: 'totalIncome' },
     { title: 'Total expense', dataIndex: 'totalExpense', key: 'totalExpense' },
     { title: 'Balance', dataIndex: 'balance', key: 'balance' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
@@ -174,9 +171,6 @@ const BudgetSummary = () => {
           <Form.Item name="balance" label="Balance">
             <Input />
           </Form.Item>
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
           <Form.Item name="language" label="Language">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
@@ -196,7 +190,6 @@ const BudgetSummary = () => {
             <p><strong>Total income:</strong> {viewing.totalIncome}</p>
             <p><strong>Total expense:</strong> {viewing.totalExpense}</p>
             <p><strong>Balance:</strong> {viewing.balance}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
           </div>
         )}

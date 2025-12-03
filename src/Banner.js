@@ -29,7 +29,6 @@ const Banner = () => {
       background_image: 'https://sooooper.com/media/banner/carousel-item_1.png',
       is_active: true,
       language: 'English',
-      clientId: '1',
     },
   ]);
   const [loading, setLoading] = useState(false);
@@ -75,7 +74,6 @@ const Banner = () => {
           title: values.title,
           subtitle: values.subtitle,
           language: values.language,
-          clientId: values.clientId,
           is_active: values.is_active,
         };
         // PUT request to update (send JSON payload when no new file)
@@ -368,14 +366,6 @@ const Banner = () => {
             />
           </Form.Item>
 
-          <Form.Item
-            label="ClientId"
-            name="clientId"
-            rules={[{ required: true, message: 'Please enter client ID' }]}
-          >
-            <Input placeholder="Enter client ID" size={screens.md ? 'middle' : 'large'} />
-          </Form.Item>
-
           <Form.Item>
             <Button 
               type="primary" 
@@ -413,9 +403,6 @@ const Banner = () => {
             </p>
             <p>
               <strong>Language:</strong> {viewingBanner.language}
-            </p>
-            <p>
-              <strong>Client ID:</strong> {viewingBanner.clientId}
             </p>
             <p>
               <strong>Active:</strong> {viewingBanner.is_active ? 'Yes' : 'No'}

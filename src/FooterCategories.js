@@ -40,7 +40,6 @@ const FooterCategories = () => {
     form.setFieldsValue({
       name: record.name,
       language: record.language,
-      clientId: record.clientId,
     })
     setIsModalOpen(true)
   }
@@ -72,7 +71,6 @@ const FooterCategories = () => {
     const payload = {
       name: values.name,
       language: values.language || null,
-      clientId: values.clientId || null,
     }
 
     setLoading(true)
@@ -101,7 +99,6 @@ const FooterCategories = () => {
   const columns = [
     { title: 'Name', dataIndex: 'name', key: 'name' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -136,9 +133,6 @@ const FooterCategories = () => {
           <Form.Item name="language" label="Language">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>
               {editing ? 'Update' : 'Create'}
@@ -152,7 +146,6 @@ const FooterCategories = () => {
           <div>
             <p><strong>Name:</strong> {viewing.name}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

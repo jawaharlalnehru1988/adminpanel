@@ -48,7 +48,6 @@ const Officers = () => {
       contact: record.contact,
       tags: record.tags,
       language: record.language || undefined,
-      clientId: record.clientId || undefined,
       whatsapp: record.whatsapp,
       order: record.order,
     });
@@ -107,7 +106,6 @@ const Officers = () => {
       contact: values.contact || '',
       tags: values.tags || '',
       language: values.language || '',
-      clientId: values.clientId || '',
       whatsapp: values.whatsapp || '',
       order: values.order != null ? values.order : 0,
     };
@@ -160,7 +158,6 @@ const Officers = () => {
     { title: 'Tags', dataIndex: 'tags', key: 'tags' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
     { title: 'Order', dataIndex: 'order', key: 'order' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -225,10 +222,6 @@ const Officers = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item name="order" label="Order">
             <InputNumber style={{width:'100%'}} />
           </Form.Item>
@@ -250,7 +243,6 @@ const Officers = () => {
             <p><strong>Tags:</strong> {viewing.tags}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
             <p><strong>Order:</strong> {viewing.order}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

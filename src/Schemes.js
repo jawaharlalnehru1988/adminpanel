@@ -56,7 +56,6 @@ const Schemes = () => {
       website_link: record.website_link,
       apply_link: record.apply_link,
       language: record.language,
-      clientId: record.clientId,
     });
     setSelectedFile(null);
     setPreviewUrl(record.icon || null);
@@ -116,7 +115,6 @@ const Schemes = () => {
       website_link: values.website_link || '',
       apply_link: values.apply_link || '',
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -161,7 +159,6 @@ const Schemes = () => {
     { title: 'Level', dataIndex: 'level', key: 'level' },
     { title: 'Icon', dataIndex: 'icon', key: 'icon', render: (v) => v ? <img src={v} alt="icon" style={{maxWidth:50, maxHeight:50}} crossOrigin="anonymous" /> : null },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -260,10 +257,6 @@ const Schemes = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -286,7 +279,6 @@ const Schemes = () => {
             <p><strong>Website Link:</strong> {viewing.website_link ? <a href={viewing.website_link} target="_blank" rel="noopener noreferrer">{viewing.website_link}</a> : 'N/A'}</p>
             <p><strong>Apply Link:</strong> {viewing.apply_link ? <a href={viewing.apply_link} target="_blank" rel="noopener noreferrer">{viewing.apply_link}</a> : 'N/A'}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

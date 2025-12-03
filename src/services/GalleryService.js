@@ -7,7 +7,6 @@ const GalleryService = {
     const formData = new FormData();
     formData.append('title', data.title || '');
     formData.append('language', data.language || '');
-    formData.append('clientId', data.clientId || '');
 
     if (file) {
       formData.append('image', file);
@@ -23,7 +22,6 @@ const GalleryService = {
       const formData = new FormData();
       formData.append('title', data.title || '');
       formData.append('language', data.language || '');
-      formData.append('clientId', data.clientId || '');
       formData.append('image', file);
 
       if (process.env.NODE_ENV === 'development') {
@@ -41,7 +39,6 @@ const GalleryService = {
     const payload = {
       title: data.title || '',
       language: data.language || '',
-      clientId: data.clientId || '',
       keep_image: true,
     };
 

@@ -19,7 +19,6 @@ const BannerService = {
     formData.append('title', data.title);
     formData.append('subtitle', data.subtitle);
     formData.append('language', data.language);
-    formData.append('clientId', data.clientId);
     formData.append('is_active', data.is_active ? true : false);
     
     // Add file if provided
@@ -49,7 +48,6 @@ const BannerService = {
       formData.append('title', data.title);
       formData.append('subtitle', data.subtitle);
       formData.append('language', data.language);
-      formData.append('clientId', data.clientId);
       formData.append('is_active', data.is_active ? true : false);
       formData.append('background_image', file);
 
@@ -71,7 +69,6 @@ const BannerService = {
       title: data.title,
       subtitle: data.subtitle,
       language: data.language,
-      clientId: data.clientId,
       is_active: data.is_active ? true : false,
       keep_image: true,
     };

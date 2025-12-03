@@ -42,7 +42,6 @@ const ProgrammeHighlights = () => {
       type: record.type,
       link: record.link,
       language: record.language || undefined,
-      clientId: record.clientId || undefined,
     });
     setIsModalOpen(true);
   };
@@ -76,7 +75,6 @@ const ProgrammeHighlights = () => {
       type: values.type,
       link: values.link || null,
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -105,7 +103,6 @@ const ProgrammeHighlights = () => {
     { title: 'Type', dataIndex: 'type', key: 'type' },
     { title: 'Link', dataIndex: 'link', key: 'link', render: l => l ? <a href={l} target="_blank" rel="noreferrer">Link</a> : null },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -149,9 +146,6 @@ const ProgrammeHighlights = () => {
           <Form.Item name="language" label="Language">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -166,7 +160,6 @@ const ProgrammeHighlights = () => {
             <p><strong>Type:</strong> {viewing.type}</p>
             <p><strong>Link:</strong> {viewing.link ? <a href={viewing.link} target="_blank" rel="noreferrer">{viewing.link}</a> : '—'}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

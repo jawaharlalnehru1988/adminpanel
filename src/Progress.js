@@ -41,7 +41,6 @@ const Progress = () => {
       title: record.title,
       percentage: record.percentage,
       language: record.language,
-      clientId: record.clientId,
     });
     setIsModalOpen(true);
   };
@@ -73,7 +72,6 @@ const Progress = () => {
       title: values.title,
       percentage: values.percentage,
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -100,7 +98,6 @@ const Progress = () => {
     { title: 'Title', dataIndex: 'title', key: 'title', render: t => <div style={{maxWidth:300, whiteSpace:'normal'}}>{t}</div> },
     { title: 'Percentage', dataIndex: 'percentage', key: 'percentage' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -145,10 +142,6 @@ const Progress = () => {
             </Select>
           </Form.Item>
 
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -161,7 +154,6 @@ const Progress = () => {
             <p><strong>Title:</strong> {viewing.title}</p>
             <p><strong>Percentage:</strong> {viewing.percentage}%</p>
             <p><strong>Language:</strong> {viewing.language}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>

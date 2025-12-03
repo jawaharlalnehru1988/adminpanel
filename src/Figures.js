@@ -42,7 +42,6 @@ const Figures = () => {
       icon: record.icon,
       order: record.order,
       language: record.language || undefined,
-      clientId: record.clientId || undefined,
     });
     setIsModalOpen(true);
   };
@@ -77,7 +76,6 @@ const Figures = () => {
       icon: values.icon || null,
       order: values.order || 0,
       language: values.language || null,
-      clientId: values.clientId || null,
     };
 
     setLoading(true);
@@ -106,7 +104,6 @@ const Figures = () => {
     { title: 'Unit', dataIndex: 'unit', key: 'unit' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
     { title: 'Order', dataIndex: 'order', key: 'order' },
-    { title: 'ClientId', dataIndex: 'clientId', key: 'clientId' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
       <Space>
         <Button icon={<EyeOutlined />} size="small" onClick={()=>handleView(r)}>View</Button>
@@ -153,9 +150,6 @@ const Figures = () => {
           <Form.Item name="language" label="Language">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
-          <Form.Item name="clientId" label="ClientId">
-            <Input />
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>{editing ? 'Update' : 'Create'}</Button>
           </Form.Item>
@@ -170,7 +164,6 @@ const Figures = () => {
             <p><strong>Unit:</strong> {viewing.unit}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
             <p><strong>Order:</strong> {viewing.order}</p>
-            <p><strong>ClientId:</strong> {viewing.clientId}</p>
           </div>
         )}
       </Modal>
