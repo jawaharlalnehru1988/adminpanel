@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Table, Button, Modal, Form, Input, Select, message, Space } from 'antd'
 import { PlusOutlined, EditOutlined, DeleteOutlined, EyeOutlined } from '@ant-design/icons'
 import FinancialYearService from './services/FinancialYearService'
+import BudgetSummaryService from './services/BudgetSummaryService'
 // Note: API calls for budget summaries are left as TODOs. A stub service exists at `src/services/BudgetSummaryService.js`.
 
 const BudgetSummary = () => {
@@ -18,9 +19,8 @@ const BudgetSummary = () => {
     setLoading(true)
     try {
       // TODO: replace with real API call
-      // const res = await BudgetSummaryService.getBudgetSummaries()
-      // setList(res.data || [])
-      setList([])
+      const res = await BudgetSummaryService.getBudgetSummaries()
+      setList(res.data || [])
     } catch (err) {
       console.error(err)
       message.error('Failed to load budget summaries')
@@ -50,10 +50,10 @@ const BudgetSummary = () => {
   const openEdit = (record) => {
     setEditing(record)
     form.setFieldsValue({
-      yearId: record.yearId,
-      totalBudget: record.totalBudget,
-      totalIncome: record.totalIncome,
-      totalExpense: record.totalExpense,
+      year: record.year,
+      total_budget: record.total_budget,
+      total_income: record.total_income,
+      total_expense: record.total_expense,
       balance: record.balance,
       language: record.language,
     })
@@ -67,7 +67,7 @@ const BudgetSummary = () => {
       async onOk() {
         try {
           // TODO: replace with real API call
-          // await BudgetSummaryService.deleteBudgetSummary(id)
+          await BudgetSummaryService.deleteBudgetSummary(id)
           message.success('Deleted')
           fetch()
         } catch (err) {
@@ -85,24 +85,24 @@ const BudgetSummary = () => {
 
   const onFinish = async (values) => {
     const payload = {
-      yearId: values.yearId,
-      totalBudget: values.totalBudget || null,
-      totalIncome: values.totalIncome || null,
-      totalExpense: values.totalExpense || null,
-      balance: values.balance || null,
-      language: values.language || null,
+      year: values.year,  // ID of the financial year
+      total_budget: values.total_budget || '',
+      total_income: values.total_income || '',
+      total_expense: values.total_expense || '',
+      balance: values.balance || '',
+      language: values.language || '',
     }
 
     setLoading(true)
     try {
-      console.log('BudgetSummary payload (not sent):', payload)
+      console.log('BudgetSummary payload:', payload)
       if (editing) {
         // TODO: replace with real API call
-        // await BudgetSummaryService.updateBudgetSummary(editing.id, payload)
+        await BudgetSummaryService.updateBudgetSummary(editing.id, payload)
         message.success('Updated')
       } else {
         // TODO: replace with real API call
-        // await BudgetSummaryService.createBudgetSummary(payload)
+        await BudgetSummaryService.createBudgetSummary(payload)
         message.success('Created')
       }
       setIsModalOpen(false)
@@ -118,14 +118,14 @@ const BudgetSummary = () => {
 
   const getYearName = (id) => {
     const y = years.find(x => x.id === id)
-    return y ? y.name || y.year || id : id
+    return y ? y.name || y.year_name || id : id
   }
 
   const columns = [
-    { title: 'Financial Year', dataIndex: 'yearId', key: 'yearId', render: v => getYearName(v) },
-    { title: 'Total budget', dataIndex: 'totalBudget', key: 'totalBudget' },
-    { title: 'Total income', dataIndex: 'totalIncome', key: 'totalIncome' },
-    { title: 'Total expense', dataIndex: 'totalExpense', key: 'totalExpense' },
+    { title: 'Financial Year', dataIndex: 'year', key: 'year', render: v => getYearName(v) },
+    { title: 'Total Budget', dataIndex: 'total_budget', key: 'total_budget' },
+    { title: 'Total Income', dataIndex: 'total_income', key: 'total_income' },
+    { title: 'Total Expense', dataIndex: 'total_expense', key: 'total_expense' },
     { title: 'Balance', dataIndex: 'balance', key: 'balance' },
     { title: 'Language', dataIndex: 'language', key: 'language' },
     { title: 'Actions', key: 'actions', render: (_, r) => (
@@ -156,22 +156,22 @@ const BudgetSummary = () => {
 
       <Modal title={editing ? 'Edit Budget Summary' : 'Add budget summary'} open={isModalOpen} onCancel={()=>{setIsModalOpen(false); form.resetFields();}} footer={null}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
-          <Form.Item name="yearId" label="Financial Year" rules={[{required:true, message:'Select year'}]}>
-            <Select showSearch placeholder="Select year" options={years.map(y=>({label:y.name||y.year, value:y.id}))} />
+          <Form.Item name="year" label="Financial Year" rules={[{required:true, message:'Select year'}]}>
+            <Select showSearch placeholder="Select year" options={years.map(y=>({label:y.name||y.year_name, value:y.id}))} />
           </Form.Item>
-          <Form.Item name="totalBudget" label="Total budget">
+          <Form.Item name="total_budget" label="Total Budget">
             <Input />
           </Form.Item>
-          <Form.Item name="totalIncome" label="Total income">
+          <Form.Item name="total_income" label="Total Income">
             <Input />
           </Form.Item>
-          <Form.Item name="totalExpense" label="Total expense">
+          <Form.Item name="total_expense" label="Total Expense">
             <Input />
           </Form.Item>
           <Form.Item name="balance" label="Balance">
             <Input />
           </Form.Item>
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
           <Form.Item>
@@ -185,10 +185,10 @@ const BudgetSummary = () => {
       <Modal title="Budget Summary" open={isViewOpen} onCancel={()=>setIsViewOpen(false)} footer={[<Button key="close" onClick={()=>setIsViewOpen(false)}>Close</Button>] }>
         {viewing && (
           <div>
-            <p><strong>Year:</strong> {getYearName(viewing.yearId)}</p>
-            <p><strong>Total budget:</strong> {viewing.totalBudget}</p>
-            <p><strong>Total income:</strong> {viewing.totalIncome}</p>
-            <p><strong>Total expense:</strong> {viewing.totalExpense}</p>
+            <p><strong>Year:</strong> {getYearName(viewing.year)}</p>
+            <p><strong>Total Budget:</strong> {viewing.total_budget}</p>
+            <p><strong>Total Income:</strong> {viewing.total_income}</p>
+            <p><strong>Total Expense:</strong> {viewing.total_expense}</p>
             <p><strong>Balance:</strong> {viewing.balance}</p>
             <p><strong>Language:</strong> {viewing.language}</p>
           </div>

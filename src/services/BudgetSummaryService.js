@@ -1,17 +1,10 @@
-const BudgetSummaryService = {
-  // Stubbed service: replace with real API calls
-  getBudgetSummaries: async () => {
-    return { data: [] }
-  },
-  createBudgetSummary: async (payload) => {
-    return { data: payload }
-  },
-  updateBudgetSummary: async (id, payload) => {
-    return { data: payload }
-  },
-  deleteBudgetSummary: async (id) => {
-    return { }
-  }
-}
+import axiosInstance from './axiosInstance';
 
-export default BudgetSummaryService
+const BudgetSummaryService = {
+  getBudgetSummaries: () => axiosInstance.get('/api/budgets/'),
+  createBudgetSummary: (data) => axiosInstance.post('/api/budgets/', data),
+  updateBudgetSummary: (id, data) => axiosInstance.put(`/api/budgets/${id}/`, data),
+  deleteBudgetSummary: (id) => axiosInstance.delete(`/api/budgets/${id}/`),
+};
+
+export default BudgetSummaryService;

@@ -61,12 +61,17 @@ const getItems = (t) => [
     label: t("menu.finance", { defaultValue: "गवाचा अर्थ संकल्प" }),
     children: [
       { key: "budget-summary", label: t("menu.budgetSummary", { defaultValue: "Budget Summary" }) },
-      { key: "income-categories", label: t("menu.incomeCategories", { defaultValue: "Income Categories" }) },
-      { key: "income-periods", label: t("menu.incomePeriods", { defaultValue: "Income Periods" }) },
-      { key: "expenditure-categories", label: t("menu.expenditureCategories", { defaultValue: "Expenditure Categories" }) },
-      { key: "expenditure-periods", label: t("menu.expenditurePeriods", { defaultValue: "Expenditure Period" }) },
-      { key: "additional-income-categories", label: t("menu.additionalIncomeCategories", { defaultValue: "Additional Income Categories (Date entry)" }) },
-      { key: "additional-categories", label: t("menu.additionalCategories", { defaultValue: "Additional Categories (Date entry)" }) },
+      { key: "financial-cards", label: t("menu.financialCards", { defaultValue: "Financial Cards" }) },
+      { key: "financial-reports", label: t("menu.financialReports", { defaultValue: "Financial Reports" }) },
+    ],
+  },
+  {
+    key: "divider11",
+    type: "divider",
+    label: t("menu.digitalLibrary", { defaultValue: "डिजिटल ग्रंथालय" }),
+    children: [
+      { label: t("menu.digitalLibraryEntry", { defaultValue: "Digital Library" }), key: "digital-library" },
+      { label: t("menu.villageBooks", { defaultValue: "Village Books" }), key: "village-books" },
     ],
   },
   {
@@ -79,7 +84,10 @@ const getItems = (t) => [
     key: "divider8",
     type: "divider",
     label: t("menu.events", { defaultValue: "समारंभ" }),
-    children: [],
+    children: [
+      { key: "ceremony", label: t("menu.ceremony", { defaultValue: "Ceremonies" }) },
+      { key: "birthday-wishes", label: t("menu.birthdayWishes", { defaultValue: "Birthday Wishes" }) },
+    ],
   },
   {
     key: "divider9",
@@ -93,14 +101,7 @@ const getItems = (t) => [
     label: t("menu.prosperousPanchayat", { defaultValue: "समृद्ध ग्रामपंचायत" }),
     children: [],
   },
-  {
-    key: "divider11",
-    type: "divider",
-    label: t("menu.digitalLibrary", { defaultValue: "डिजिटल ग्रंथालय" }),
-    children: [
-      { label: t("menu.digitalLibraryEntry", { defaultValue: "Digital Library" }), key: "digital-library" },
-    ],
-  },
+  
   // {
   //   key: "home",
   //   icon: <HomeOutlined />,

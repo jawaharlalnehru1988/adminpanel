@@ -238,7 +238,7 @@ const Projects = () => {
             {previewUrl && <div style={{marginTop:8}}><img src={previewUrl} alt="preview" style={{maxWidth:200}} /></div>}
           </Form.Item>
 
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear>
               <Option value="English">English</Option>
               <Option value="Marathi">Marathi</Option>

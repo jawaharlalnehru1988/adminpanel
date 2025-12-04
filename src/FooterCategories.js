@@ -130,7 +130,7 @@ const FooterCategories = () => {
           <Form.Item name="name" label="Name" rules={[{required:true, message:'Enter name'}]}>
             <Input />
           </Form.Item>
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
           <Form.Item>

@@ -42,15 +42,11 @@ const Login = ({ onLoginSuccess }) => {
         username: username.trim(),
         password: password,
       });
-      console.log('Login response:', response.data);
 
       const { token } = response.data;
 
       // Store token in localStorage
       localStorage.setItem('authToken', token);
-
-      // Console log token
-      console.log('Token:', token);
 
       message.success('Login successful!');
 

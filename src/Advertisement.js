@@ -172,12 +172,6 @@ const Advertisement = () => {
         pagination={{pageSize:10}}
       />
 
-      {lastDebug && (
-        <div style={{marginTop:12, padding:12, background:'#f7f7f7', borderRadius:6}}>
-          <strong>Debug:</strong>
-          <pre style={{whiteSpace:'pre-wrap', marginTop:8}}>{JSON.stringify(lastDebug, null, 2)}</pre>
-        </div>
-      )}
 
       <Modal title={editing ? 'Edit Advertisement' : 'Create Advertisement'} open={isModalOpen} onCancel={()=>{setIsModalOpen(false); form.resetFields(); setSelectedFile(null); if (previewUrl && previewUrl.startsWith && previewUrl.startsWith('blob:')) { try { URL.revokeObjectURL(previewUrl); } catch(e){} } setPreviewUrl(null);}} footer={null}>
         <Form form={form} layout="vertical" onFinish={onFinish}>
@@ -196,7 +190,7 @@ const Advertisement = () => {
             {previewUrl && <div style={{marginTop:8}}><img src={previewUrl} alt="preview" style={{maxWidth:200}} /></div>}
           </Form.Item>
 
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear>
               <Option value="English">English</Option>
               <Option value="Marathi">Marathi</Option>
