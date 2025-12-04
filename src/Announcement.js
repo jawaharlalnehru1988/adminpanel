@@ -137,7 +137,7 @@ const Announcement = () => {
           <Form.Item name="is_active" label="Active" valuePropName="checked">
             <Switch />
           </Form.Item>
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
           <Form.Item>

@@ -200,7 +200,7 @@ const Schemes = () => {
 
           <Form.Item name="level" label="Level">
             <Select allowClear placeholder="Select level">
-              <Option value="national">National</Option>
+              <Option value="central">Central</Option>
               <Option value="state">State</Option>
               <Option value="local">Local</Option>
             </Select>
@@ -249,7 +249,7 @@ const Schemes = () => {
             {previewUrl && <div style={{marginTop:8}}><img src={previewUrl} alt="preview" style={{maxWidth:200}} /></div>}
           </Form.Item>
 
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear>
               <Option value="English">English</Option>
               <Option value="Marathi">Marathi</Option>

@@ -18,19 +18,20 @@ import Projects from './Projects';
 import ProjectGallery from './ProjectGallery';
 import Complaints from './Complaints';
 import Donations from './Donations';
-import ExpenditureCategories from './ExpenditureCategories';
-import IncomeCategories from './IncomeCategories';
-import IncomePeriods from './IncomePeriods';
 import Title from 'antd/es/typography/Title';
 import QuickLinks from './QuickLinks';
 import FooterItems from './FooterItems';
 import FooterCategories from './FooterCategories';
 import BudgetSummary from './BudgetSummary';
-import ExpenditurePeriods from './ExpenditurePeriods';
 import Login from './Login';
 import { isAuthenticated, clearAuth } from './services/axiosInstance';
 import DigitalLibrary from './DigitalLibrary';
 import TaxPayment from './TaxPayment';
+import VillageBooks from './VillageBooks';
+import Ceremony from './Ceremony';
+import BirthdayWishes from './BirthdayWishes';
+import FinancialCards from './FinancialCards';
+import FinancialReports from './FinancialReports';
 const { Header, Content, Sider } = Layout;
 
 const renderContent = (key) => {
@@ -50,9 +51,6 @@ const renderContent = (key) => {
     'project-gallery': <ProjectGallery />,
     complaints: <Complaints />,
     donations: <Donations />,
-    'expenditure-categories': <ExpenditureCategories />,
-    'income-categories': <IncomeCategories />,
-    'income-periods': <IncomePeriods />,
     'quick-links': <QuickLinks />,
     'important-figures': <Figures />,
     'administrative-members': <Administration />,
@@ -60,10 +58,14 @@ const renderContent = (key) => {
     'footer-items': <FooterItems />,
     'footer-categories': <FooterCategories />,
     'budget-summary': <BudgetSummary />,
-    'expenditure-periods': <ExpenditurePeriods />,     
     'digital-library': <DigitalLibrary />,
     'my-village': <VillageInfo />,
     'tax-payment': <TaxPayment />,
+    'village-books': <VillageBooks />,
+    'ceremony': <Ceremony />,
+    'birthday-wishes': <BirthdayWishes />,
+    'financial-cards': <FinancialCards />,
+    'financial-reports': <FinancialReports />,
   };
 
   if (components[key]) {

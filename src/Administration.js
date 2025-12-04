@@ -215,7 +215,7 @@ const Administration = () => {
             <Input />
           </Form.Item>
 
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear>
               <Option value="English">English</Option>
               <Option value="Marathi">Marathi</Option>

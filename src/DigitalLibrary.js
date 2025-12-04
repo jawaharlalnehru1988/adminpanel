@@ -167,7 +167,7 @@ const DigitalLibrary = () => {
               <Button icon={<UploadOutlined />}>Choose File</Button>
             </Upload>
           </Form.Item>
-          <Form.Item name="language" label="Language">
+          <Form.Item name="language" label="Language" initialValue="Marathi">
             <Select allowClear options={[{label:'English', value:'English'},{label:'Marathi', value:'Marathi'},{label:'Hindi', value:'Hindi'}]} />
           </Form.Item>
           <Form.Item>
